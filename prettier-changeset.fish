@@ -1,6 +1,6 @@
 # Defined in - @ line 1
-function prettier-changeset --wraps='git-files' --description 'alias mypy-changeset=mypy (git-files $argv | grep .js$\|.ts$)'
-  set files (git-files $argv | grep '.js$\|.ts$');
+function prettier-changeset --wraps='git-files' --description 'alias mypy-changeset=mypy (git-files $argv | grep -E \.(js|ts)$'
+  set files (git-files $argv | grep -E '\.(js|ts)$');
   set_color -o white;
   echo -n prettier:
   set_color normal;

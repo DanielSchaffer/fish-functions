@@ -1,6 +1,6 @@
 # Defined in - @ line 1
-function isort-changeset --wraps='git-files' --description 'alias isort-changeset=isort -y (git-files $argv | grep "\.py")'
-  set files (git-files $argv | grep "\.py");
+function isort-changeset --wraps='git-files' --description 'alias isort-changeset=isort -y (git-files $argv | grep "\.py$")'
+  set files (git-files $argv | grep '\.py$');
   set_color -o white;
   echo -n isort:
   set_color normal;

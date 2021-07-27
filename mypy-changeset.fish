@@ -1,6 +1,6 @@
 # Defined in - @ line 1
-function mypy-changeset --wraps='git-files' --description 'alias mypy-changeset=mypy (git-files $argv | grep "\.py")'
-  set files (git-files $argv | grep "\.py");
+function mypy-changeset --wraps='git-files' --description 'alias mypy-changeset=mypy (git-files $argv | grep \.py$)'
+  set files (git-files $argv | grep '\.py$');
   set_color -o white;
   echo -n mypy:
   set_color normal;

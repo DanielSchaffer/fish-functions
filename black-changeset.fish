@@ -1,6 +1,6 @@
 # Defined in - @ line 1
-function black-changeset --wraps='git-files' --description 'alias black-changeset=black (git-files $argv | grep "\.py")'
-  set files (git-files $argv | grep "\.py");
+function black-changeset --wraps='git-files' --description 'alias black-changeset=black (git-files $argv | grep "\.py$")'
+  set files (git-files $argv | grep '\.py$');
   set_color -o white;
   echo -n black:
   set_color normal;

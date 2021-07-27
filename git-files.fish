@@ -8,7 +8,7 @@ function git-files --description 'filters a set of files, defaulting to the curr
     if test $files[1]
       string split ' ' $files;
     else
-      git-diff master;
+      lintable-files master;
     end
   end
 end
