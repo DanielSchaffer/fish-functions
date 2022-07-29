@@ -9,8 +9,8 @@ function isort-changeset --wraps='git-files' --description 'alias isort-changese
     echo ''
     return 0
   end
-  set result (isort -y $files | awk '{print $0, "##"}');
-  if test $result[1]
+  set result (isort $files | awk '{print $0, "##"}');
+  if test $result[1]; and not string match -r 'Skipped \d+ files' $result[1]
     echo ''
     string split '##' $result | grep -v -e '^$'
     echo ''

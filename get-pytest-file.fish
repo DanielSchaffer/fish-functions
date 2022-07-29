@@ -1,6 +1,6 @@
 # Defined in - @ line 1
 function get-pytest-file --description 'attempts to find a test file given a source file'
-  while read -l file
+  while read -l file;
 #    echo 'match?' (string match -r '^(\w+/)+test' $line)
     if string match -rq '^(\w+/)+test' $file
       continue
@@ -32,26 +32,29 @@ function get-pytest-file --description 'attempts to find a test file given a sou
     set testdir "$app/test"
     set test_file "test_$filename"
 
-    if -z app_relative_dir
-      # probably a "bulk" file like models.py, tasks.py, etc
-
-      set bulk_type (string sub --end -3 $filename)
-      echo "bulk_type $bulk_type"
-
-      if -d "$testdir/$bulk_type"
-        set test_discrete (ls "$PWD/$testdir/$bulk_type/" | grep -r '^test_')
-        echo "test_discrete: $test_discrete"
-        if string length -q $test_discrete
-          # TODO: use git diff to inspect the changed code and find classes to match
-          #       e.g. if class SomeModel is part of the diff, look for models/test_some_model.py
-          echo $test_discrete
-          continue
-        end
-      end
-
-    end
+#    if -z $app_relative_dir
+#      # probably a "bulk" file like models.py, tasks.py, etc
+#
+#      set bulk_type (string sub --end -3 $filename)
+#      echo "bulk_type $bulk_type"
+#
+#      if -d "$testdir/$bulk_type"
+#        set test_discrete (ls "$PWD/$testdir/$bulk_type/" | grep -r '^test_')
+#        echo "test_discrete: $test_discrete"
+#
+#        if string length -q $test_discrete
+#          # TODO: use git diff to inspect the changed code and find classes to match
+#          #       e.g. if class SomeModel is part of the diff, look for models/test_some_model.py
+#          echo $test_discrete
+#          continue
+#        end
+#
+#      end
+#
+#    end
 
     set test_by_app_relative_path "$testdir/$app_relative_dir$test_file"
+
     if test -f $test_by_app_relative_path
       echo $test_by_app_relative_path
       continue

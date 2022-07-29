@@ -1,9 +1,7 @@
 # Defined in - @ line 1
 function py-lint --description 'runs all lint operations on the specified set of files, defaulting to the current changeset'
-  if not string match "/venv/" (which python)
-    venv
-  end
   set exit_code 0
+#  return 0
 
   black-changeset $argv;
   set last_status $status

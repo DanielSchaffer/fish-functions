@@ -9,7 +9,8 @@ function mypy-changeset --wraps='git-files' --description 'alias mypy-changeset=
     echo ''
     return 0
   end
-  set result (mypy $files | awk '{print $0, "##"}');
+#  set result (dmypy run -- --follow-imports=skip --show-error-codes $files | awk '{print $0, "##"}');
+  set result (mypy --show-error-codes $files | awk '{print $0, "##"}');
   if test $result[1]
     echo ''
     if test (string match --regex '^Success' $result)

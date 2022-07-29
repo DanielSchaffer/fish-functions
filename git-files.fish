@@ -1,14 +1,10 @@
 # Defined in - @ line 1
-function git-files --description 'filters a set of files, defaulting to the current changeset, or the diff to master if the working directory is clean, using specified grep pattern'
-  echo git-files $argv
-  if test $argv
-    string split ' ' $argv;
-  else
-    set files (git-changeset);
-    if test $files[1]
-      string split ' ' $files;
-    else
-      lintable-files master;
-    end
+function git-files --argument-names branch --description 'filters a set of files, defaulting to the current changeset, or the diff to master if the working directory is clean, using specified grep pattern'
+  if not test $branch
+    set branch (git-parent-branch)
   end
+  # combine files from the current working changeset as well as branch commits
+  set files (git-changeset $branch) (git-branch-files $branch);
+  string split ' ' $files | sort | uniq;
+#  end
 end
