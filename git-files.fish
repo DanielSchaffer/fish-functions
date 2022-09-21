@@ -4,7 +4,7 @@ function git-files --argument-names branch --description 'filters a set of files
     set branch (git-parent-branch)
   end
   # combine files from the current working changeset as well as branch commits
-  set files (git-changeset $branch) (git-branch-files $branch);
+  set files (git-changeset) (git-branch-files $branch);
   string split ' ' $files | sort | uniq;
 #  end
 end
