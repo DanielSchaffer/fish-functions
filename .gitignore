@@ -3,3 +3,15 @@
 
 # symlinked functions
 fish_prompt.fish
+
+# from other integrations
+__bass.py
+__nvm_run.fish
+bass.fish
+node.fish
+npm.fish
+npx.fish
+nvm.fish
+nvm_alias_command.fish
+nvm_alias_function.fish
+yarn.fish
