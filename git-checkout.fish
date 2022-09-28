@@ -33,7 +33,9 @@ function git-checkout --wraps='git branch' --description 'returns the current br
 
     if test (count $children) -gt 1
       echo "Multiple children found:"
-      for child in children
+      for child in $children
+        set child (string replace --regex ^branch\. "" $child)
+        set child (string replace --regex \.parent\$ "" $child)
         echo "  $child"
       end
       return -1
