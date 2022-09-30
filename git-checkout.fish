@@ -13,8 +13,10 @@ function git-checkout --wraps='git branch' --description 'returns the current br
     set parent (git config --get "branch.$cur_branch.parent")
 
     if not test $parent
-      echo "No parent configured for $cur_branch"
-      return -1
+      # TODO: look up default branch using git remote show
+      set parent master
+      git config --local --add "branch.$cur_branch.parent" $parent
+      echo "No parent configured for $cur_branch, defaulting to $parent"
     end
 
     git checkout $parent
