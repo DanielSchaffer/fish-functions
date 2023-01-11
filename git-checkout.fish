@@ -26,7 +26,7 @@ function git-checkout --wraps='git branch' --description 'returns the current br
 
   if [ $branch_flag = "--next" ]
     set cur_branch (git-curbranch)
-    set children (git config --name-only --get-regexp ^branch\..+\.parent\$ $cur_branch)
+    set children (git config --name-only --get-regexp ^branch\..+\.parent\$ $cur_branch\$)
 
     if test (count $children) -eq 0
       echo "No children configured for $cur_branch"
