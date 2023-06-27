@@ -8,10 +8,12 @@ fish_prompt.fish
 __bass.py
 __nvm_run.fish
 bass.fish
+fisher.fish
 node.fish
 npm.fish
 npx.fish
 nvm.fish
 nvm_alias_command.fish
 nvm_alias_function.fish
+rvm.fish
 yarn.fish
