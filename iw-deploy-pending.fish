@@ -15,7 +15,29 @@ function iw-deploy-pending --wraps 'git log' --argument-names env --description 
     set to master
   end
 
-  git log "$from".."$to"
+  echo ""
+  set commits (git log "$from".."$to")
+  if test -z "$commits"
+    echo "No pending commits"
+  else
+    echo "Pending commits:"
+    echo ""
+    git log "$from".."$to"
+    echo ""
+  end
+
+  echo ""
+  echo "--------------------"
+  echo ""
+  set migrations (git diff "$from".."$to" | grep "migrations\/\d.*\.py\$")
+  if test -z "$migrations"
+    echo "No pending migrations"
+  else
+    echo "Pending migrations:"
+    echo ""
+    git diff "$from".."$to" | grep "migrations\/\d.*\.py\$"
+  end
+  echo ""
 
 end
 
